@@ -66,12 +66,12 @@ public class DroneServiceImpl implements DroneService {
 	
 	@Override
 	public int getBattaryLevel(Long droneID) {
-		Drone drone = dronRepository.findDroneById(droneID);
+		Drone drone = this.getDrone(droneID);
 		if (drone == null) {
-			throw new DroneException("DR003", "Drone Not Found");
+			//throw exception
 		}
 		if (drone.getBtCapacity() < 25) {
-			LOG.info("**********  Drone " + drone.getSerial() + " Battery is very Low  **************");
+			//Log error 
 		}
 		return drone.getBtCapacity();
 	}
