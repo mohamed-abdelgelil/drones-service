@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.mo.drones.dto.MedicationDTO;
+import dev.mo.drones.exception.DroneException;
 import dev.mo.drones.model.Drone;
 import dev.mo.drones.model.DroneState;
 import dev.mo.drones.model.Medication;
@@ -29,16 +30,16 @@ public class MedicationServiceImpl implements MedicationService {
 		// getDroneByID
 		Drone drone = droneService.getDrone(droneID);
 		if (drone == null) {
-			// throw exception
+			throw new DroneException("DR003", "Drone Not Found");
 		}
 		if (drone.getWeight() + medicationDTO.getWeight() > 500) {
-			// throw exception
+			throw new DroneException("DR004", "Weght Exceed the Limit of 500");
 		}
 		if (drone.getState() != DroneState.IDLE) {
-			// throw exception
+			throw new DroneException("DR005", "Drone is Not Available");
 		}
 		if (drone.getBtCapacity() < 25) {
-			// throw exception
+			throw new DroneException("DR006", "Drone Battery very Low");
 		}
 
 		// Loading

@@ -5,15 +5,21 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import dev.mo.drones.dto.DroneDTO;
+import dev.mo.drones.exception.DroneException;
 import dev.mo.drones.model.Drone;
 import dev.mo.drones.repository.DroneRepository;
 
 @Service
 public class DroneServiceImpl implements DroneService {
+
+	private static final Logger LOG = LoggerFactory.getLogger(DroneServiceImpl.class);
 
 	@Autowired
 	DroneRepository droneRepository;
@@ -27,7 +33,7 @@ public class DroneServiceImpl implements DroneService {
 	@Override
 	public DroneDTO addDrone(DroneDTO droneDTO) {
 		if (droneDTO.getSerial().length() > 100) {
-			// throw Exception
+			throw new DroneException("DR001", "Serial Exceed Limit of 100");
 		}
 
 		Drone drone = new Drone();
@@ -73,12 +79,20 @@ public class DroneServiceImpl implements DroneService {
 	public int getBattaryLevel(Long droneID) {
 		Drone drone = this.getDrone(droneID);
 		if (drone == null) {
-			// throw exception
+			throw new DroneException("DR003", "Drone Not Found");
 		}
 		if (drone.getBtCapacity() < 25) {
-			// Log error
+			LOG.info("**********  Drone " + drone.getSerial() + " Battery is very Low  **************");
 		}
 		return drone.getBtCapacity();
+	}
+
+	@Scheduled(fixedRate = 30000)
+	private void batteryStateChecker() {
+		List<Drone> drones = droneRepository.findLowBattartLevels();
+		for (Drone drone : drones) {
+			LOG.warn("**********  Drone " + drone.getSerial() + " Battery is very Low  **************");
+		}
 	}
 
 }
