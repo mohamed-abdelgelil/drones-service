@@ -23,7 +23,6 @@ public class DroneServiceImpl implements DroneService {
 		
 		Drone drone = new Drone();
 		drone.setSerial(droneDTO.getSerial());
-		drone.setWeight(droneDTO.getWeight());
 		drone.setModel(droneDTO.getModel());
 		droneRepository.save(drone);
 		droneDTO.setId(drone.getId());
