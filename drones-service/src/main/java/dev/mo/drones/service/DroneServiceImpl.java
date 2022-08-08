@@ -8,8 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.musala.drones.config.DroneException;
-
 import dev.mo.drones.dto.DroneDTO;
 import dev.mo.drones.model.Drone;
 import dev.mo.drones.repository.DroneRepository;

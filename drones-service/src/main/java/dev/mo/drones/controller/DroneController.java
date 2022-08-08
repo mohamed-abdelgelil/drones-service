@@ -29,7 +29,7 @@ public class DroneController {
 		return droneService.getAvailableDrones();
 	}
 
-	@RequestMapping(value = "/{droneID}/battary/get", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/battary/get/{droneID}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public int getDroneBattary(@PathVariable Long droneID) {
 		return droneService.getBattaryLevel(droneID);
 	}
