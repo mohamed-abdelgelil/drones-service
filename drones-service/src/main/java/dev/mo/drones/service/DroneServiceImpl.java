@@ -3,12 +3,13 @@ package dev.mo.drones.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import dev.mo.drones.dto.DroneDTO;
 import dev.mo.drones.model.Drone;
 import dev.mo.drones.repository.DroneRepository;
 
+@Service
 public class DroneServiceImpl implements DroneService {
 
 	@Autowired
@@ -28,4 +29,6 @@ public class DroneServiceImpl implements DroneService {
 		droneDTO.setId(drone.getId());
 		return droneDTO;
 	}
+	
+	
 }
