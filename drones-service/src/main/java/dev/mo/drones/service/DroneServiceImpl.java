@@ -34,7 +34,13 @@ public class DroneServiceImpl implements DroneService {
 		drone.setSerial(droneDTO.getSerial());
 		drone.setModel(droneDTO.getModel());
 		droneRepository.save(drone);
+
 		droneDTO.setId(drone.getId());
+		droneDTO.setBtCapacity(drone.getBtCapacity());
+		droneDTO.setModel(drone.getModel());
+		droneDTO.setSerial(drone.getSerial());
+		droneDTO.setState(String.valueOf(drone.getState()));
+		droneDTO.setWeight(drone.getWeight());
 		return droneDTO;
 	}
 
@@ -50,6 +56,7 @@ public class DroneServiceImpl implements DroneService {
 		List<Drone> drones = droneRepository.findAvailableDrones();
 		for (Drone drone : drones) {
 			DroneDTO droneDTO = new DroneDTO();
+			droneDTO.setId(drone.getId());
 			droneDTO.setBtCapacity(drone.getBtCapacity());
 			droneDTO.setModel(drone.getModel());
 			droneDTO.setSerial(drone.getSerial());
@@ -61,15 +68,15 @@ public class DroneServiceImpl implements DroneService {
 		return droneDTOs;
 
 	}
-	
+
 	@Override
 	public int getBattaryLevel(Long droneID) {
 		Drone drone = this.getDrone(droneID);
 		if (drone == null) {
-			//throw exception
+			// throw exception
 		}
 		if (drone.getBtCapacity() < 25) {
-			//Log error 
+			// Log error
 		}
 		return drone.getBtCapacity();
 	}

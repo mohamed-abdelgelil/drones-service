@@ -20,8 +20,8 @@ public class MedicationController {
 	MedicationService medicationService;
 
 	@RequestMapping(value = "/add/to/{droneID}", method = RequestMethod.POST, headers = "Accept=application/json")
-	public void addMedicationToDrone(@PathVariable Long droneID, @RequestBody MedicationDTO medicationDTO) {
-		medicationService.addMedicationToDrone(medicationDTO, droneID);
+	public MedicationDTO addMedicationToDrone(@PathVariable Long droneID, @RequestBody MedicationDTO medicationDTO) {
+		return medicationService.addMedicationToDrone(medicationDTO, droneID);
 	}
 
 	@RequestMapping(value = "/get/from/{droneID}", method = RequestMethod.GET, headers = "Accept=application/json")
