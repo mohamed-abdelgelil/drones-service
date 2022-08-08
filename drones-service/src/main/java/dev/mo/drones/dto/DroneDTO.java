@@ -8,6 +8,8 @@ public class DroneDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7789945395635464977L;
+	
+	private Long id;
 
 	private String serial;
 
@@ -18,6 +20,15 @@ public class DroneDTO implements Serializable {
 	private int btCapacity;
 
 	private String state;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getSerial() {
 		return serial;
