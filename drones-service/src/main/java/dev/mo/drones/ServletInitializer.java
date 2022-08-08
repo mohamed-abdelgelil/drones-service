@@ -1,4 +1,4 @@
-package com.musala.drones;
+package dev.mo.drones;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
