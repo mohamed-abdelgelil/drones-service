@@ -17,5 +17,7 @@ public interface DroneService {
 	void updateDrone(Drone drone);
 	
 	List<DroneDTO> getAvailableDrones();
+	
+	int getBattaryLevel(Long droneID);
 
 }

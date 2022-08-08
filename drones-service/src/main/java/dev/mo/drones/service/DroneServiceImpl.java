@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.musala.drones.config.DroneException;
+
 import dev.mo.drones.dto.DroneDTO;
 import dev.mo.drones.model.Drone;
 import dev.mo.drones.repository.DroneRepository;
@@ -60,6 +62,18 @@ public class DroneServiceImpl implements DroneService {
 		}
 		return droneDTOs;
 
+	}
+	
+	@Override
+	public int getBattaryLevel(Long droneID) {
+		Drone drone = dronRepository.findDroneById(droneID);
+		if (drone == null) {
+			throw new DroneException("DR003", "Drone Not Found");
+		}
+		if (drone.getBtCapacity() < 25) {
+			LOG.info("**********  Drone " + drone.getSerial() + " Battery is very Low  **************");
+		}
+		return drone.getBtCapacity();
 	}
 
 }
