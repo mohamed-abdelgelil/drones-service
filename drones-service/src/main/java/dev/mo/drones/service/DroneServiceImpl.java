@@ -1,5 +1,8 @@
 package dev.mo.drones.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import dev.mo.drones.dto.DroneDTO;
 import dev.mo.drones.model.Drone;
-import dev.mo.drones.model.DroneState;
 import dev.mo.drones.repository.DroneRepository;
 
 @Service
@@ -40,6 +42,24 @@ public class DroneServiceImpl implements DroneService {
 	@Override
 	public void updateDrone(Drone drone) {
 		droneRepository.save(drone);
+	}
+
+	@Override
+	public List<DroneDTO> getAvailableDrones() {
+		List<DroneDTO> droneDTOs = new ArrayList<>();
+		List<Drone> drones = droneRepository.findAvailableDrones();
+		for (Drone drone : drones) {
+			DroneDTO droneDTO = new DroneDTO();
+			droneDTO.setBtCapacity(drone.getBtCapacity());
+			droneDTO.setModel(drone.getModel());
+			droneDTO.setSerial(drone.getSerial());
+			droneDTO.setState(String.valueOf(drone.getState()));
+			droneDTO.setWeight(drone.getWeight());
+
+			droneDTOs.add(droneDTO);
+		}
+		return droneDTOs;
+
 	}
 
 }
