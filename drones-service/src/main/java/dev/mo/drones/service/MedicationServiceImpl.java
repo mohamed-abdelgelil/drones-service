@@ -25,7 +25,7 @@ public class MedicationServiceImpl implements MedicationService {
 
 	@Transactional
 	@Override
-	public void addMedicationToDrone(MedicationDTO medicationDTO, Long droneID) {
+	public MedicationDTO addMedicationToDrone(MedicationDTO medicationDTO, Long droneID) {
 		// getDroneByID
 		Drone drone = droneService.getDrone(droneID);
 		if (drone == null) {
@@ -57,6 +57,15 @@ public class MedicationServiceImpl implements MedicationService {
 		drone.setWeight(drone.getWeight() + medicationDTO.getWeight());
 		droneService.updateDrone(drone);
 		// Loaded
+		
+		
+		// Prepare Response
+		medicationDTO.setId(medication.getId());
+		medicationDTO.setCode(medication.getCode());
+		medicationDTO.setImage(medication.getImage());
+		medicationDTO.setName(medication.getName());
+		medicationDTO.setWeight(medication.getWeight());
+		return medicationDTO;
 
 	}
 	
@@ -68,6 +77,7 @@ public class MedicationServiceImpl implements MedicationService {
 		for (Medication medication : medications) {
 
 			MedicationDTO medicationDTO = new MedicationDTO();
+			medicationDTO.setId(medication.getId());
 			medicationDTO.setCode(medication.getCode());
 			medicationDTO.setImage(medication.getImage());
 			medicationDTO.setName(medication.getName());

@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "037f384d-b1e2-489b-a2e4-6ec137d5e1e7",
+		"name": "Drone-Services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Drone Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serial\":\"123456789\",\r\n    \"model\":\"Lightweight\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/drone/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drone",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Available Drones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/drone/get",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drone",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Drone Battery Level",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/drone/battary/get/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drone",
+						"battary",
+						"get",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load Drone by Medication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\":\"ss112\",\r\n    \"name\":\"pulsDevice\",\r\n    \"weight\":\"100\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/medication/add/to/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medication",
+						"add",
+						"to",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Medication on Drone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/medication/get/from/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medication",
+						"get",
+						"from",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

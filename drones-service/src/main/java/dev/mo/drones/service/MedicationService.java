@@ -6,7 +6,7 @@ import dev.mo.drones.dto.MedicationDTO;
 
 public interface MedicationService {
 
-	void addMedicationToDrone(MedicationDTO medicationDTO, Long droneID);
+	MedicationDTO addMedicationToDrone(MedicationDTO medicationDTO, Long droneID);
 	
 	List<MedicationDTO> getMedications(Long droneID);
 }

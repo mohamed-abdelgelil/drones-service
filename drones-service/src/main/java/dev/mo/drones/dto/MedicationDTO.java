@@ -9,6 +9,8 @@ public class MedicationDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 5265231349500447308L;
 
+	private Long id;
+
 	private String name;
 
 	private int weight;
@@ -16,6 +18,14 @@ public class MedicationDTO implements Serializable {
 	private String code;
 
 	private byte[] image;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
