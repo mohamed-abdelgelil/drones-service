@@ -1,4 +1,4 @@
-package com.musala.drones;
+package dev.mo.drones;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
