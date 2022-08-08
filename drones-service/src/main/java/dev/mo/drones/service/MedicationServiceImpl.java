@@ -1,5 +1,8 @@
 package dev.mo.drones.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +58,23 @@ public class MedicationServiceImpl implements MedicationService {
 		droneService.updateDrone(drone);
 		// Loaded
 
+	}
+	
+	
+	@Override
+	public List<MedicationDTO> getMedications(Long droneID) {
+		List<MedicationDTO> medicationDTOs = new ArrayList<MedicationDTO>();
+		List<Medication> medications = medicationRepository.findMedicationsByDroneID(droneID);
+		for (Medication medication : medications) {
+
+			MedicationDTO medicationDTO = new MedicationDTO();
+			medicationDTO.setCode(medication.getCode());
+			medicationDTO.setImage(medication.getImage());
+			medicationDTO.setName(medication.getName());
+			medicationDTO.setWeight(medication.getWeight());
+
+			medicationDTOs.add(medicationDTO);
+		}
+		return medicationDTOs;
 	}
 }
